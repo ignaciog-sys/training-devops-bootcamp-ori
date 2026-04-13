@@ -1,1 +1,1 @@
-Herramienta favorita: VS Code
+Herramienta favorita: Vim
