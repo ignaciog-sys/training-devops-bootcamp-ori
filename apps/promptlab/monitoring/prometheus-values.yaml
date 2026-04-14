@@ -1,0 +1,38 @@
+##############################################################################
+# PromptLab - Helm values for kube-prometheus-stack
+# Usage:
+#   helm upgrade --install monitoring prometheus-community/kube-prometheus-stack \
+#     -f prometheus-values.yaml -n monitoring --create-namespace
+##############################################################################
+
+prometheus:
+  prometheusSpec:
+    additionalScrapeConfigs:
+      - job_name: "promptlab-api"
+        scrape_interval: 15s
+        metrics_path: /metrics
+        static_configs:
+          - targets:
+              - "promptlab-api:3001"
+            labels:
+              app: promptlab
+              component: api
+
+grafana:
+  adminPassword: bootcamp2026
+
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+        - name: promptlab
+          orgId: 1
+          folder: PromptLab
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/promptlab
+
+  dashboardsConfigMaps:
+    promptlab: promptlab-grafana-dashboard

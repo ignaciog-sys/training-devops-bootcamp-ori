@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: promptlab-api-config
+  namespace: promptlab
+  labels:
+    app.kubernetes.io/name: promptlab
+    app.kubernetes.io/component: api
+data:
+  PORT: "3001"
+  NODE_ENV: "production"

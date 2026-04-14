@@ -1,0 +1,23 @@
+##############################################################################
+# PromptLab - Kubernetes ServiceMonitor
+# Instructs Prometheus Operator to scrape metrics from promptlab-api
+##############################################################################
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: promptlab-api
+  labels:
+    app: promptlab-api
+    release: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: promptlab-api
+  endpoints:
+    - port: http
+      targetPort: 3001
+      path: /metrics
+      interval: 15s
+  namespaceSelector:
+    matchNames:
+      - default

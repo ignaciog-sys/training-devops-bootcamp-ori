@@ -1,0 +1,8 @@
+# PromptLab - Example Terraform Variables
+# Copy this file to terraform.tfvars and adjust values as needed.
+
+api_port            = 3001
+frontend_port       = 8080
+environment         = "production"
+api_image_name      = "promptlab-api"
+frontend_image_name = "promptlab-frontend"

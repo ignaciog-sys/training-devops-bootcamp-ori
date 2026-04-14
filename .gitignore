@@ -1,17 +1,19 @@
+# Dependencias
 node_modules/
-*.db
-.env
-.DS_Store
-*.log
-.terraform/
-*.tfstate
-*.tfstate.backup
-.terraform.lock.hcl
-terraform-lab/
-terraform-quizbattle/
-mysql-backup.tar.gz
+vendor/
 
-# Apps bloqueadas — se liberan dia a dia
-apps/campuseats/
-apps/quizbattle/
-apps/monitoring/
+# Variables de entorno (secretos)
+.env
+.env.local
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+
+# PromptLab
+apps/promptlab/backend/data/promptlab.db

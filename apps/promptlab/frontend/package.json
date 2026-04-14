@@ -1,0 +1,8 @@
+{
+  "name": "promptlab-frontend",
+  "version": "1.0.0",
+  "description": "PromptLab frontend — interfaz web",
+  "scripts": {
+    "start": "npx serve public -l 5173"
+  }
+}

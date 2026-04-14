@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "promptlab.fullname" . }}-frontend
+  labels:
+    {{- include "promptlab.labels" . | nindent 4 }}
+    app.kubernetes.io/component: frontend
+spec:
+  type: {{ .Values.frontend.serviceType }}
+  selector:
+    {{- include "promptlab.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: frontend
+  ports:
+    - port: {{ .Values.frontend.port }}
+      targetPort: {{ .Values.frontend.port }}
+      {{- if eq .Values.frontend.serviceType "NodePort" }}
+      nodePort: {{ .Values.frontend.nodePort }}
+      {{- end }}
+      protocol: TCP

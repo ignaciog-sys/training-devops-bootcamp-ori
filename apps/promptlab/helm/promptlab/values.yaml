@@ -1,0 +1,40 @@
+api:
+  image:
+    repository: promptlab-api
+    tag: v1
+    pullPolicy: IfNotPresent
+  replicas: 1
+  port: 3001
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi
+
+frontend:
+  image:
+    repository: promptlab-frontend
+    tag: v1
+    pullPolicy: IfNotPresent
+  replicas: 1
+  port: 80
+  serviceType: NodePort
+  nodePort: 30080
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
+persistence:
+  enabled: true
+  size: 512Mi
+  accessMode: ReadWriteOnce
+
+env:
+  PORT: "3001"
+  NODE_ENV: "production"
