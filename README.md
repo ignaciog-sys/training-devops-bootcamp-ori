@@ -72,7 +72,16 @@ git clone https://github.com/TU-USUARIO/training-devops-bootcamp.git
 cd training-devops-bootcamp
 ```
 
-3. **Verificad** que la app funciona:
+3. **Anadid el repo del instructor como `upstream`** para sincronizar:
+
+```bash
+git remote add upstream https://github.com/cpalanca/training-devops-bootcamp.git
+git remote -v
+# origin    -> vuestro fork
+# upstream  -> repo del instructor
+```
+
+4. **Verificad** que la app funciona:
 
 ```bash
 cd apps/promptlab/backend
@@ -81,13 +90,48 @@ npm test
 # 14 tests passing
 ```
 
-4. Abrid VS Code:
+5. Abrid VS Code:
 
 ```bash
 code .
 ```
 
 Ya estais listos para el Dia 1.
+
+---
+
+## Flujo de trabajo con ramas
+
+**Regla de oro: nunca pusheeis directo a `main`**. Vuestra `main` esta sincronizada con la del instructor via `upstream`; si pusheais a main, vuestro fork diverge y los PRs se vuelven un lio.
+
+Para cada ejercicio / lab / workshop:
+
+```bash
+# 1. Sincronizar main con el instructor
+git checkout main
+git pull upstream main
+
+# 2. Crear rama de trabajo
+git checkout -b feat/nombre-del-ejercicio
+
+# 3. Trabajad, commiteais, pushead a vuestra rama
+git add .
+git commit -m "descripcion del cambio"
+git push -u origin feat/nombre-del-ejercicio
+
+# 4. Abrid un Pull Request en GitHub hacia main de vuestro fork
+#    (base: TU-USUARIO/training-devops-bootcamp main <- compare: feat/...)
+```
+
+**Convencion de nombres de rama** (para que el instructor las localice):
+
+| Prefijo | Para que | Ejemplo |
+|---------|----------|---------|
+| `setup/<nombre>` | Setup inicial del alumno | `setup/ana-alameda` |
+| `lab/<tema>/<nombre>` | Laboratorios diarios | `lab/docker-basico/juan-castellano` |
+| `feat/<tema>` o `feature/<nombre>` | Features de los workshops | `feat/ci-pipeline`, `feature/alejandro` |
+
+El CI de este repo se dispara en push a ramas y en PRs. Veis los checks directamente en el PR.
 
 ---
 
@@ -105,5 +149,7 @@ Ya estais listos para el Dia 1.
 ## Reglas del repositorio
 
 - Trabajad siempre en vuestra copia (fork). No modifiqueis el repo original.
+- **Nunca** pusheeis directo a `main` de vuestro fork (esta sincronizada con el instructor). Trabajad en ramas `feat/*`, `lab/*`, `feature/*` y abrid PR hacia `main` de **vuestro fork**, no hacia el del instructor.
 - Haced commits frecuentes con mensajes descriptivos.
 - Si algo se rompe, `git log` para ver que cambio y `git diff` para ver que es diferente.
+- Para sincronizar con los cambios del instructor: `git checkout main && git pull upstream main`.

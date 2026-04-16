@@ -1,6 +1,0 @@
-# Herramientas favoritas de la clase
-# Cada alumno anade una linea con su nombre y herramienta favorita
-# Formato: - Nombre: Herramienta
-#
-# Ejemplo:
-# - Carlos Palanca: Neovim

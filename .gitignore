@@ -16,3 +16,6 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+
+# Apps excluidas
+apps/promptlab-desktop/
